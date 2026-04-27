@@ -146,6 +146,10 @@ config NICE_OLED_WIDGET_ANIMATION_PERIPHERAL_SPACEMAN
     bool "Enable spaceman animation on peripheral"
     default n
 
+config NICE_OLED_WIDGET_ANIMATION_PERIPHERAL_GABRIWAR
+    bool "Enable gabriwar static icon on peripheral"
+    default n
+
 config NICE_OLED_WIDGET_ANIMATION_PERIPHERAL_MS
     int "Animation length in milliseconds"
     default 10000 if NICE_OLED_WIDGET_ANIMATION_PERIPHERAL_POKEMON

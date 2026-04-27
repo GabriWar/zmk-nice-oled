@@ -12,40 +12,23 @@ void to_uppercase(char *str) {
 }
 
 void rotate_canvas(lv_obj_t *canvas, lv_color_t cbuf[]) {
-  LOG_INF("ROTATE: enter");
-  /* For an I1 canvas, the buffer holds a packed 1bpp bitmap (no palette).
-   * lv_image_dsc_t with cf=I1 expects palette bytes (2 colors x 4 BGRA = 8 bytes)
-   * prepended to the bitmap data. Build a temp image with that layout so
-   * lv_draw_image can render it back rotated.
-   */
+  /* In-buffer rotate: copy current 160x160 RGB565 to temp, clear, redraw rotated. */
   enum {
-    BITMAP_BYTES  = (CANVAS_HEIGHT * CANVAS_HEIGHT) / 8,
-    PALETTE_BYTES = 8,
+    BYTES_PER_PIXEL = 2,
+    BUF_BYTES       = CANVAS_HEIGHT * CANVAS_HEIGHT * BYTES_PER_PIXEL,
   };
-  static uint8_t cbuf_tmp[PALETTE_BYTES + BITMAP_BYTES];
-
-  /* Palette must match the canvas's palette setup in screen*.c:
-   *   idx 0 = white (BGRA 0xFF 0xFF 0xFF 0xFF)
-   *   idx 1 = black (BGRA 0x00 0x00 0x00 0xFF)
-   * Inversion is handled at color-write time via LVGL_BACKGROUND/FOREGROUND;
-   * the bitmap bits already encode which palette index each pixel uses.
-   */
-  cbuf_tmp[0] = 0xff; cbuf_tmp[1] = 0xff; cbuf_tmp[2] = 0xff; cbuf_tmp[3] = 0xff;
-  cbuf_tmp[4] = 0x00; cbuf_tmp[5] = 0x00; cbuf_tmp[6] = 0x00; cbuf_tmp[7] = 0xff;
-
-  memcpy(&cbuf_tmp[PALETTE_BYTES], cbuf, BITMAP_BYTES);
+  static uint8_t cbuf_tmp[BUF_BYTES];
+  memcpy(cbuf_tmp, cbuf, BUF_BYTES);
 
   lv_image_dsc_t img;
   memset(&img, 0, sizeof(img));
   img.data = cbuf_tmp;
-  img.data_size = sizeof(cbuf_tmp);
-  img.header.cf = LV_COLOR_FORMAT_I1;
+  img.data_size = BUF_BYTES;
+  img.header.cf = LV_COLOR_FORMAT_RGB565;
   img.header.w = CANVAS_HEIGHT;
   img.header.h = CANVAS_HEIGHT;
 
-  LOG_INF("ROTATE: fill_bg");
   lv_canvas_fill_bg(canvas, LVGL_BACKGROUND, LV_OPA_COVER);
-  LOG_INF("ROTATE: init_layer");
 
   lv_layer_t layer;
   lv_canvas_init_layer(canvas, &layer);
@@ -56,17 +39,20 @@ void rotate_canvas(lv_obj_t *canvas, lv_color_t cbuf[]) {
   img_dsc.rotation = 900;
   img_dsc.scale_x = LV_SCALE_NONE;
   img_dsc.scale_y = LV_SCALE_NONE;
-  img_dsc.pivot.x = CANVAS_HEIGHT / 2;
-  img_dsc.pivot.y = CANVAS_HEIGHT / 2;
+  /* lvgl9 rotation=900 pivot — EMPIRICALLY CONFIRMED direction vectors (per px):
+   *   RIGHT = Δpx=-1, Δpy=+1
+   *   LEFT  = Δpx=+1, Δpy=-1
+   *   UP    = Δpx=+1, Δpy=+1
+   *   DOWN  = Δpx=-1, Δpy=-1
+   * Current: pivot (79, 79) */
+  img_dsc.pivot.x = CANVAS_HEIGHT / 2 - 1;
+  img_dsc.pivot.y = CANVAS_HEIGHT / 2 - 1;
   img_dsc.antialias = 0;
 
-  LOG_INF("ROTATE: draw_image");
   lv_area_t coords = {0, 0, CANVAS_HEIGHT - 1, CANVAS_HEIGHT - 1};
   lv_draw_image(&layer, &img_dsc, &coords);
 
-  LOG_INF("ROTATE: finish_layer");
   lv_canvas_finish_layer(canvas, &layer);
-  LOG_INF("ROTATE: done");
 }
 
 void draw_background(lv_obj_t *canvas) {
