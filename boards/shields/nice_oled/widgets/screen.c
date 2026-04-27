@@ -855,10 +855,14 @@ static struct zmk_widget_hid_indicators hid_indicators_widget;
  **/
 
 static void draw_canvas(lv_obj_t *widget, lv_color_t cbuf[], const struct status_state *state) {
+    LOG_INF("DRAW_CANVAS: enter");
     lv_obj_t *canvas = lv_obj_get_child(widget, 0);
+    LOG_INF("DRAW_CANVAS: got canvas %p", (void *)canvas);
 
     // Draw widgets
+    LOG_INF("DRAW_CANVAS: draw_background");
     draw_background(canvas);
+    LOG_INF("DRAW_CANVAS: draw_output");
     draw_output_status(canvas, state);
 #if !IS_ENABLED(CONFIG_NICE_OLED_WIDGET_CENTRAL_SHOW_BATTERY_PERIPHERAL_ALL) &&                    \
     !IS_ENABLED(CONFIG_NICE_OLED_WIDGET_CENTRAL_SHOW_BATTERY_PERIPHERAL_ONLY) &&                   \
@@ -891,7 +895,9 @@ static void draw_canvas(lv_obj_t *widget, lv_color_t cbuf[], const struct status
 #endif // <-- NUEVO
 
     // Rotate for horizontal display
+    LOG_INF("DRAW_CANVAS: calling rotate_canvas");
     rotate_canvas(canvas, cbuf);
+    LOG_INF("DRAW_CANVAS: returning");
 }
 
 /**

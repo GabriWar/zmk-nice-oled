@@ -2,6 +2,8 @@
 #include <ctype.h>
 #include <string.h>
 #include <zephyr/kernel.h>
+#include <zephyr/logging/log.h>
+LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 
 void to_uppercase(char *str) {
   for (int i = 0; str[i] != '\0'; i++) {
@@ -10,6 +12,7 @@ void to_uppercase(char *str) {
 }
 
 void rotate_canvas(lv_obj_t *canvas, lv_color_t cbuf[]) {
+  LOG_INF("ROTATE: enter");
   /* For an I1 canvas, the buffer holds a packed 1bpp bitmap (no palette).
    * lv_image_dsc_t with cf=I1 expects palette bytes (2 colors x 4 BGRA = 8 bytes)
    * prepended to the bitmap data. Build a temp image with that layout so
@@ -40,7 +43,9 @@ void rotate_canvas(lv_obj_t *canvas, lv_color_t cbuf[]) {
   img.header.w = CANVAS_HEIGHT;
   img.header.h = CANVAS_HEIGHT;
 
+  LOG_INF("ROTATE: fill_bg");
   lv_canvas_fill_bg(canvas, LVGL_BACKGROUND, LV_OPA_COVER);
+  LOG_INF("ROTATE: init_layer");
 
   lv_layer_t layer;
   lv_canvas_init_layer(canvas, &layer);
@@ -55,10 +60,13 @@ void rotate_canvas(lv_obj_t *canvas, lv_color_t cbuf[]) {
   img_dsc.pivot.y = CANVAS_HEIGHT / 2;
   img_dsc.antialias = 0;
 
+  LOG_INF("ROTATE: draw_image");
   lv_area_t coords = {0, 0, CANVAS_HEIGHT - 1, CANVAS_HEIGHT - 1};
   lv_draw_image(&layer, &img_dsc, &coords);
 
+  LOG_INF("ROTATE: finish_layer");
   lv_canvas_finish_layer(canvas, &layer);
+  LOG_INF("ROTATE: done");
 }
 
 void draw_background(lv_obj_t *canvas) {
