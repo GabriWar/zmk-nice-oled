@@ -1,4 +1,20 @@
 # nice!oled - nice!epaper - nice!custom
+
+> **Fork notice (GabriWar):** This fork is a port of
+> [mctechnology17/zmk-nice-oled](https://github.com/mctechnology17/zmk-nice-oled)
+> from **LVGL 8 + ZMK v0.3** → **LVGL 9.3 + ZMK main**. The original module
+> was pinned to ZMK v0.3.0 / LVGL 8 (`lv_canvas_transform`, indexed-canvas
+> drawing, `lv_img_dsc_t`); this fork rewrites the canvas pipeline to the
+> LVGL 9 layer-based API (`lv_canvas_init_layer` / `lv_draw_image` /
+> `lv_canvas_finish_layer`), switches the canvas backing format to
+> `LV_COLOR_FORMAT_RGB565` (LVGL 9's `lv_draw_*` no longer renders to
+> indexed I1 under `LV_COLOR_DEPTH=1`), and reworks the peripheral
+> animation so frames are drawn directly into the canvas buffer instead of
+> as child `lv_obj`s — the LVGL 9 layer API doesn't tolerate canvas
+> children the way `lv_canvas_transform` did. See the **How Positioning
+> Works** section under *Widget Position Coordinates* for the resulting
+> axis semantics.
+
 ![nice_oled_demo](./assets/nice_oled_demo.GIF)
 ![nice_epaper_demo](./assets/nice_epaper_demo.GIF)
 ![nice_epaper_demo](./assets/nice_custom_demo.GIF)
