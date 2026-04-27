@@ -329,6 +329,38 @@ When using `SYMBOL` style, the following real icons are displayed:
 
 These variables allow users to customize widget positions. Each widget has X and Y coordinates that can be set in your `.conf` file. The defaults are set per shield (OLED vs ePaper).
 
+### How Positioning Works (lvgl9 port — important)
+
+Coordinates are **pre-rotation canvas coords**, not display coords. The
+canvas is drawn in portrait orientation and then rotated 90° in-buffer
+(`util.c:rotate_canvas`) to fit the physically landscape `nice_epaper`
+display. There are two distinct draw paths with **opposite axis behavior**
+on the displayed image:
+
+| Path | Used by | `CUSTOM_X` + means | `CUSTOM_Y` + means |
+|------|---------|--------------------|--------------------|
+| Pre-rotate (rides through `rotate_canvas`) | layer, battery, output, wpm, modifiers, hid_indicators | Display **right** | Display **down** (so `Y-` = up) |
+| Post-rotate (drawn directly to canvas after rotate) | smart-battery / peripheral animation frames | Display **up** | Display **right** |
+
+Practical rules of thumb on a 160 × 68 nice_epaper:
+
+- To **center horizontally** a pre-rotate widget of width `w`, set
+  `CUSTOM_X` so the icon row spans pre-rotate X near the visible window
+  midpoint (~30); to slide it horizontally on the display, change `X`
+  (not `Y`).
+- To **move vertically** a pre-rotate widget, change `CUSTOM_Y` (smaller
+  Y = higher on display).
+- For peripheral animation frames, the axes are swapped — `CUSTOM_X`
+  controls the vertical line on the display, `CUSTOM_Y` the horizontal.
+- The visible window after rotation only shows pre-rotate `X ∈ [0, 67]`
+  (the 68-tall display height); widgets whose full bounding box exceeds
+  this range will be clipped at the edge. Box layouts (modifiers 2×2)
+  need `CUSTOM_X + height ≤ 67`.
+
+If a widget appears “off the right border” it almost always means its
+pre-rotate `X` puts the bottom of its bounding box past the 67-row
+visible cutoff after rotation — lower `CUSTOM_X` until it fits.
+
 ### Layer Widget Position
 
 | Variable | Type | Default OLED | Default ePaper | Description |
