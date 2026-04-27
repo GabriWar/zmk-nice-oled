@@ -346,7 +346,7 @@ config NICE_OLED_WIDGET_RAW_HID_REPORT_SIZE
 
 config NICE_OLED_WIDGET_RAW_HID_DEVICE
     string "Raw HID Device"
-    default HID_1
+    default "HID_1"
 
 config NICE_OLED_WIDGET_RAW_HID_LAYOUT
     bool "Show layout"
