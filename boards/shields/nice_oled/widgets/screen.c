@@ -1110,20 +1110,31 @@ ZMK_SUBSCRIPTION(widget_wpm_status, zmk_wpm_state_changed);
  **/
 
 int zmk_widget_screen_init(struct zmk_widget_screen *widget, lv_obj_t *parent) {
+    LOG_INF("SCREEN_INIT: enter");
     widget->obj = lv_obj_create(parent);
+    LOG_INF("SCREEN_INIT: lv_obj_create done");
     lv_obj_set_size(widget->obj, CANVAS_HEIGHT, CANVAS_WIDTH);
+    LOG_INF("SCREEN_INIT: set_size done");
 
     lv_obj_t *canvas = lv_canvas_create(widget->obj);
+    LOG_INF("SCREEN_INIT: canvas_create done");
     lv_obj_align(canvas, LV_ALIGN_TOP_LEFT, 0, 0);
+    LOG_INF("SCREEN_INIT: align done, calling set_buffer");
     lv_canvas_set_buffer(canvas, widget->cbuf, CANVAS_HEIGHT, CANVAS_HEIGHT, LV_COLOR_FORMAT_NATIVE);
+    LOG_INF("SCREEN_INIT: set_buffer done");
 #if LV_COLOR_DEPTH == 1
+    LOG_INF("SCREEN_INIT: set_palette 0");
     lv_canvas_set_palette(canvas, 0, (lv_color32_t){.red = 0xff, .green = 0xff, .blue = 0xff, .alpha = 0xff});
+    LOG_INF("SCREEN_INIT: set_palette 1");
     lv_canvas_set_palette(canvas, 1, (lv_color32_t){.red = 0x00, .green = 0x00, .blue = 0x00, .alpha = 0xff});
+    LOG_INF("SCREEN_INIT: palette done");
 #endif
 
     sys_slist_append(&widgets, &widget->node);
+    LOG_INF("SCREEN_INIT: list append done");
 
     widget_battery_status_init();
+    LOG_INF("SCREEN_INIT: battery init done");
 
 #if IS_ENABLED(CONFIG_NICE_OLED_WIDGET_LAYER)
     widget_layer_status_init();
@@ -1206,6 +1217,7 @@ int zmk_widget_screen_init(struct zmk_widget_screen *widget, lv_obj_t *parent) {
     lv_obj_align(zmk_widget_sleep_status_obj(&sleep_status_widget), LV_ALIGN_TOP_LEFT, CONFIG_NICE_OLED_WIDGET_SLEEP_STATUS_CUSTOM_X, CONFIG_NICE_OLED_WIDGET_SLEEP_STATUS_CUSTOM_Y);
 #endif
 
+    LOG_INF("SCREEN_INIT: returning OK");
     return 0;
 }
 
