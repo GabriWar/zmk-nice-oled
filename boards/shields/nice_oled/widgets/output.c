@@ -78,6 +78,9 @@ void draw_output_status(lv_obj_t *canvas, const struct status_state *state) {
             draw_ble_unbonded(canvas);
         }
         break;
+
+    case ZMK_TRANSPORT_NONE:
+        break;
     }
 #else
     if (state->connected) {
