@@ -130,10 +130,8 @@ const LV_ATTRIBUTE_MEM_ALIGN LV_ATTRIBUTE_LARGE_CONST LV_ATTRIBUTE_IMG_POKEMON01
         0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xf0,
 };
 
-const lv_img_dsc_t pokemon01 = {
-    .header.cf = LV_IMG_CF_INDEXED_1BIT,
-    .header.always_zero = 0,
-    .header.reserved = 0,
+const lv_image_dsc_t pokemon01 = {
+    .header.cf = LV_COLOR_FORMAT_I1,
     .header.w = 140,
     .header.h = 68,
     .data_size = 1232,
@@ -258,10 +256,8 @@ const LV_ATTRIBUTE_MEM_ALIGN LV_ATTRIBUTE_LARGE_CONST LV_ATTRIBUTE_IMG_POKEMON02
         0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xf0,
 };
 
-const lv_img_dsc_t pokemon02 = {
-    .header.cf = LV_IMG_CF_INDEXED_1BIT,
-    .header.always_zero = 0,
-    .header.reserved = 0,
+const lv_image_dsc_t pokemon02 = {
+    .header.cf = LV_COLOR_FORMAT_I1,
     .header.w = 140,
     .header.h = 68,
     .data_size = 1232,
@@ -386,10 +382,8 @@ const LV_ATTRIBUTE_MEM_ALIGN LV_ATTRIBUTE_LARGE_CONST LV_ATTRIBUTE_IMG_POKEMON03
         0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xf0,
 };
 
-const lv_img_dsc_t pokemon03 = {
-    .header.cf = LV_IMG_CF_INDEXED_1BIT,
-    .header.always_zero = 0,
-    .header.reserved = 0,
+const lv_image_dsc_t pokemon03 = {
+    .header.cf = LV_COLOR_FORMAT_I1,
     .header.w = 140,
     .header.h = 68,
     .data_size = 1232,
@@ -514,10 +508,8 @@ const LV_ATTRIBUTE_MEM_ALIGN LV_ATTRIBUTE_LARGE_CONST LV_ATTRIBUTE_IMG_POKEMON04
         0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xf0,
 };
 
-const lv_img_dsc_t pokemon04 = {
-    .header.cf = LV_IMG_CF_INDEXED_1BIT,
-    .header.always_zero = 0,
-    .header.reserved = 0,
+const lv_image_dsc_t pokemon04 = {
+    .header.cf = LV_COLOR_FORMAT_I1,
     .header.w = 140,
     .header.h = 68,
     .data_size = 1232,
@@ -642,10 +634,8 @@ const LV_ATTRIBUTE_MEM_ALIGN LV_ATTRIBUTE_LARGE_CONST LV_ATTRIBUTE_IMG_POKEMON05
         0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xf0,
 };
 
-const lv_img_dsc_t pokemon05 = {
-    .header.cf = LV_IMG_CF_INDEXED_1BIT,
-    .header.always_zero = 0,
-    .header.reserved = 0,
+const lv_image_dsc_t pokemon05 = {
+    .header.cf = LV_COLOR_FORMAT_I1,
     .header.w = 140,
     .header.h = 68,
     .data_size = 1232,
@@ -770,10 +760,8 @@ const LV_ATTRIBUTE_MEM_ALIGN LV_ATTRIBUTE_LARGE_CONST LV_ATTRIBUTE_IMG_POKEMON06
         0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xf0,
 };
 
-const lv_img_dsc_t pokemon06 = {
-    .header.cf = LV_IMG_CF_INDEXED_1BIT,
-    .header.always_zero = 0,
-    .header.reserved = 0,
+const lv_image_dsc_t pokemon06 = {
+    .header.cf = LV_COLOR_FORMAT_I1,
     .header.w = 140,
     .header.h = 68,
     .data_size = 1232,
@@ -898,10 +886,8 @@ const LV_ATTRIBUTE_MEM_ALIGN LV_ATTRIBUTE_LARGE_CONST LV_ATTRIBUTE_IMG_POKEMON07
         0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xf0,
 };
 
-const lv_img_dsc_t pokemon07 = {
-    .header.cf = LV_IMG_CF_INDEXED_1BIT,
-    .header.always_zero = 0,
-    .header.reserved = 0,
+const lv_image_dsc_t pokemon07 = {
+    .header.cf = LV_COLOR_FORMAT_I1,
     .header.w = 140,
     .header.h = 68,
     .data_size = 1232,
@@ -1026,10 +1012,8 @@ const LV_ATTRIBUTE_MEM_ALIGN LV_ATTRIBUTE_LARGE_CONST LV_ATTRIBUTE_IMG_POKEMON08
         0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xf0,
 };
 
-const lv_img_dsc_t pokemon08 = {
-    .header.cf = LV_IMG_CF_INDEXED_1BIT,
-    .header.always_zero = 0,
-    .header.reserved = 0,
+const lv_image_dsc_t pokemon08 = {
+    .header.cf = LV_COLOR_FORMAT_I1,
     .header.w = 140,
     .header.h = 68,
     .data_size = 1232,
@@ -1154,10 +1138,8 @@ const LV_ATTRIBUTE_MEM_ALIGN LV_ATTRIBUTE_LARGE_CONST LV_ATTRIBUTE_IMG_POKEMON09
         0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xf0,
 };
 
-const lv_img_dsc_t pokemon09 = {
-    .header.cf = LV_IMG_CF_INDEXED_1BIT,
-    .header.always_zero = 0,
-    .header.reserved = 0,
+const lv_image_dsc_t pokemon09 = {
+    .header.cf = LV_COLOR_FORMAT_I1,
     .header.w = 140,
     .header.h = 68,
     .data_size = 1232,
@@ -1282,10 +1264,8 @@ const LV_ATTRIBUTE_MEM_ALIGN LV_ATTRIBUTE_LARGE_CONST LV_ATTRIBUTE_IMG_POKEMON10
         0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xf0,
 };
 
-const lv_img_dsc_t pokemon10 = {
-    .header.cf = LV_IMG_CF_INDEXED_1BIT,
-    .header.always_zero = 0,
-    .header.reserved = 0,
+const lv_image_dsc_t pokemon10 = {
+    .header.cf = LV_COLOR_FORMAT_I1,
     .header.w = 140,
     .header.h = 68,
     .data_size = 1232,
@@ -1410,10 +1390,8 @@ const LV_ATTRIBUTE_MEM_ALIGN LV_ATTRIBUTE_LARGE_CONST LV_ATTRIBUTE_IMG_POKEMON11
         0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xf0,
 };
 
-const lv_img_dsc_t pokemon11 = {
-    .header.cf = LV_IMG_CF_INDEXED_1BIT,
-    .header.always_zero = 0,
-    .header.reserved = 0,
+const lv_image_dsc_t pokemon11 = {
+    .header.cf = LV_COLOR_FORMAT_I1,
     .header.w = 140,
     .header.h = 68,
     .data_size = 1232,
@@ -1538,10 +1516,8 @@ const LV_ATTRIBUTE_MEM_ALIGN LV_ATTRIBUTE_LARGE_CONST LV_ATTRIBUTE_IMG_POKEMON12
         0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xf0,
 };
 
-const lv_img_dsc_t pokemon12 = {
-    .header.cf = LV_IMG_CF_INDEXED_1BIT,
-    .header.always_zero = 0,
-    .header.reserved = 0,
+const lv_image_dsc_t pokemon12 = {
+    .header.cf = LV_COLOR_FORMAT_I1,
     .header.w = 140,
     .header.h = 68,
     .data_size = 1232,
@@ -1666,10 +1642,8 @@ const LV_ATTRIBUTE_MEM_ALIGN LV_ATTRIBUTE_LARGE_CONST LV_ATTRIBUTE_IMG_POKEMON13
         0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xf0,
 };
 
-const lv_img_dsc_t pokemon13 = {
-    .header.cf = LV_IMG_CF_INDEXED_1BIT,
-    .header.always_zero = 0,
-    .header.reserved = 0,
+const lv_image_dsc_t pokemon13 = {
+    .header.cf = LV_COLOR_FORMAT_I1,
     .header.w = 140,
     .header.h = 68,
     .data_size = 1232,
@@ -1794,10 +1768,8 @@ const LV_ATTRIBUTE_MEM_ALIGN LV_ATTRIBUTE_LARGE_CONST LV_ATTRIBUTE_IMG_POKEMON14
         0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xf0,
 };
 
-const lv_img_dsc_t pokemon14 = {
-    .header.cf = LV_IMG_CF_INDEXED_1BIT,
-    .header.always_zero = 0,
-    .header.reserved = 0,
+const lv_image_dsc_t pokemon14 = {
+    .header.cf = LV_COLOR_FORMAT_I1,
     .header.w = 140,
     .header.h = 68,
     .data_size = 1232,
@@ -1922,10 +1894,8 @@ const LV_ATTRIBUTE_MEM_ALIGN LV_ATTRIBUTE_LARGE_CONST LV_ATTRIBUTE_IMG_POKEMON15
         0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xf0,
 };
 
-const lv_img_dsc_t pokemon15 = {
-    .header.cf = LV_IMG_CF_INDEXED_1BIT,
-    .header.always_zero = 0,
-    .header.reserved = 0,
+const lv_image_dsc_t pokemon15 = {
+    .header.cf = LV_COLOR_FORMAT_I1,
     .header.w = 140,
     .header.h = 68,
     .data_size = 1232,
@@ -2050,10 +2020,8 @@ const LV_ATTRIBUTE_MEM_ALIGN LV_ATTRIBUTE_LARGE_CONST LV_ATTRIBUTE_IMG_POKEMON16
         0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xf0,
 };
 
-const lv_img_dsc_t pokemon16 = {
-    .header.cf = LV_IMG_CF_INDEXED_1BIT,
-    .header.always_zero = 0,
-    .header.reserved = 0,
+const lv_image_dsc_t pokemon16 = {
+    .header.cf = LV_COLOR_FORMAT_I1,
     .header.w = 140,
     .header.h = 68,
     .data_size = 1232,
@@ -2178,10 +2146,8 @@ const LV_ATTRIBUTE_MEM_ALIGN LV_ATTRIBUTE_LARGE_CONST LV_ATTRIBUTE_IMG_POKEMON17
         0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xf0,
 };
 
-const lv_img_dsc_t pokemon17 = {
-    .header.cf = LV_IMG_CF_INDEXED_1BIT,
-    .header.always_zero = 0,
-    .header.reserved = 0,
+const lv_image_dsc_t pokemon17 = {
+    .header.cf = LV_COLOR_FORMAT_I1,
     .header.w = 140,
     .header.h = 68,
     .data_size = 1232,
@@ -2306,10 +2272,8 @@ const LV_ATTRIBUTE_MEM_ALIGN LV_ATTRIBUTE_LARGE_CONST LV_ATTRIBUTE_IMG_POKEMON18
         0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xf0,
 };
 
-const lv_img_dsc_t pokemon18 = {
-    .header.cf = LV_IMG_CF_INDEXED_1BIT,
-    .header.always_zero = 0,
-    .header.reserved = 0,
+const lv_image_dsc_t pokemon18 = {
+    .header.cf = LV_COLOR_FORMAT_I1,
     .header.w = 140,
     .header.h = 68,
     .data_size = 1232,
@@ -2434,10 +2398,8 @@ const LV_ATTRIBUTE_MEM_ALIGN LV_ATTRIBUTE_LARGE_CONST LV_ATTRIBUTE_IMG_POKEMON19
         0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xf0,
 };
 
-const lv_img_dsc_t pokemon19 = {
-    .header.cf = LV_IMG_CF_INDEXED_1BIT,
-    .header.always_zero = 0,
-    .header.reserved = 0,
+const lv_image_dsc_t pokemon19 = {
+    .header.cf = LV_COLOR_FORMAT_I1,
     .header.w = 140,
     .header.h = 68,
     .data_size = 1232,
@@ -2562,10 +2524,8 @@ const LV_ATTRIBUTE_MEM_ALIGN LV_ATTRIBUTE_LARGE_CONST LV_ATTRIBUTE_IMG_POKEMON20
         0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xf0,
 };
 
-const lv_img_dsc_t pokemon20 = {
-    .header.cf = LV_IMG_CF_INDEXED_1BIT,
-    .header.always_zero = 0,
-    .header.reserved = 0,
+const lv_image_dsc_t pokemon20 = {
+    .header.cf = LV_COLOR_FORMAT_I1,
     .header.w = 140,
     .header.h = 68,
     .data_size = 1232,

@@ -19,26 +19,26 @@ static lv_anim_t idle_anim;
 static lv_timer_t *idle_check_timer = NULL;
 
 /*
-LV_IMG_DECLARE(idle_img1);
-LV_IMG_DECLARE(idle_img2);
-LV_IMG_DECLARE(idle_img3);
-LV_IMG_DECLARE(idle_img4);
-LV_IMG_DECLARE(idle_img5);
-LV_IMG_DECLARE(fast_img1);
-LV_IMG_DECLARE(fast_img2);
+LV_IMAGE_DECLARE(idle_img1);
+LV_IMAGE_DECLARE(idle_img2);
+LV_IMAGE_DECLARE(idle_img3);
+LV_IMAGE_DECLARE(idle_img4);
+LV_IMAGE_DECLARE(idle_img5);
+LV_IMAGE_DECLARE(fast_img1);
+LV_IMAGE_DECLARE(fast_img2);
 
 static const void *idle_images[] = {&idle_img1, &idle_img2, &idle_img3, &idle_img4, &idle_img5};
 
 static const void *tap_images[] = {&fast_img1, &fast_img2};
 */
 
-LV_IMG_DECLARE(bongo_cat_both1_open_90);
-LV_IMG_DECLARE(bongo_cat_both1_open_90);
-LV_IMG_DECLARE(bongo_cat_both1_open_90);
-LV_IMG_DECLARE(bongo_cat_both1_90);
-LV_IMG_DECLARE(bongo_cat_both1_90);
-LV_IMG_DECLARE(bongo_cat_right2_90);
-LV_IMG_DECLARE(bongo_cat_left2_90);
+LV_IMAGE_DECLARE(bongo_cat_both1_open_90);
+LV_IMAGE_DECLARE(bongo_cat_both1_open_90);
+LV_IMAGE_DECLARE(bongo_cat_both1_open_90);
+LV_IMAGE_DECLARE(bongo_cat_both1_90);
+LV_IMAGE_DECLARE(bongo_cat_both1_90);
+LV_IMAGE_DECLARE(bongo_cat_right2_90);
+LV_IMAGE_DECLARE(bongo_cat_left2_90);
 
 static const void *idle_images[] = {&bongo_cat_both1_open_90, &bongo_cat_both1_open_90,
                                     &bongo_cat_both1_90, &bongo_cat_both1_90,
@@ -66,7 +66,7 @@ static void set_idle_frame(void *var, int32_t val) {
     LOG_DBG("BONGO: Idle animation frame: %d", val);
     lv_obj_t *img = (lv_obj_t *)var;
     int frame = val % IDLE_FRAMES;
-    lv_img_set_src(img, idle_images[frame]);
+    lv_image_set_src(img, idle_images[frame]);
 }
 
 static void start_idle_animation(lv_obj_t *obj) {
@@ -80,7 +80,7 @@ static void start_idle_animation(lv_obj_t *obj) {
     lv_anim_init(&idle_anim);
     lv_anim_set_var(&idle_anim, obj);
     lv_anim_set_values(&idle_anim, 0, IDLE_FRAMES - 1);
-    lv_anim_set_time(&idle_anim, IDLE_ANIM_TIME);
+    lv_anim_set_duration(&idle_anim, IDLE_ANIM_TIME);
     lv_anim_set_exec_cb(&idle_anim, set_idle_frame);
     lv_anim_set_repeat_count(&idle_anim, LV_ANIM_REPEAT_INFINITE);
     lv_anim_start(&idle_anim);
@@ -104,7 +104,7 @@ static void play_tap_animation(lv_obj_t *obj) {
 
     static uint8_t current_frame = 0;
     current_frame = (current_frame + 1) % TAP_FRAMES;
-    lv_img_set_src(obj, tap_images[current_frame]);
+    lv_image_set_src(obj, tap_images[current_frame]);
 }
 
 static void update_responsive_bongo_cat_anim(struct zmk_widget_responsive_bongo_cat *widget,
@@ -146,7 +146,7 @@ ZMK_SUBSCRIPTION(widget_responsive_bongo_cat, zmk_keycode_state_changed);
 
 int zmk_widget_responsive_bongo_cat_init(struct zmk_widget_responsive_bongo_cat *widget,
                                          lv_obj_t *parent) {
-    widget->obj = lv_img_create(parent);
+    widget->obj = lv_image_create(parent);
 
     // Initialize idle check timer
     if (idle_check_timer == NULL) {

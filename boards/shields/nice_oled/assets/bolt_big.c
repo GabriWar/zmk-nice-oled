@@ -20,10 +20,8 @@ const LV_ATTRIBUTE_MEM_ALIGN LV_ATTRIBUTE_LARGE_CONST LV_ATTRIBUTE_IMG_BOLT uint
     0x04, 0x08, 0x18, 0x30, 0x7f, 0xfe, 0x1c, 0x18, 0x30, 0x20, 0x40,
 };
 
-const lv_img_dsc_t bolt = {
-    .header.cf = LV_IMG_CF_INDEXED_1BIT,
-    .header.always_zero = 0,
-    .header.reserved = 0,
+const lv_image_dsc_t bolt = {
+    .header.cf = LV_COLOR_FORMAT_I1,
     .header.w = 8,
     .header.h = 11,
     .data_size = 19,

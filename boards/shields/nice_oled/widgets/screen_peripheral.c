@@ -144,7 +144,11 @@ int zmk_widget_screen_init(struct zmk_widget_screen *widget, lv_obj_t *parent) {
 
     lv_obj_t *canvas = lv_canvas_create(widget->obj);
     lv_obj_align(canvas, LV_ALIGN_TOP_LEFT, 0, 0);
-    lv_canvas_set_buffer(canvas, widget->cbuf, CANVAS_HEIGHT, CANVAS_HEIGHT, LV_IMG_CF_TRUE_COLOR);
+    lv_canvas_set_buffer(canvas, widget->cbuf, CANVAS_HEIGHT, CANVAS_HEIGHT, LV_COLOR_FORMAT_NATIVE);
+#if LV_COLOR_DEPTH == 1
+    lv_canvas_set_palette(canvas, 0, (lv_color32_t){.red = 0xff, .green = 0xff, .blue = 0xff, .alpha = 0xff});
+    lv_canvas_set_palette(canvas, 1, (lv_color32_t){.red = 0x00, .green = 0x00, .blue = 0x00, .alpha = 0xff});
+#endif
 
     sys_slist_append(&widgets, &widget->node);
 

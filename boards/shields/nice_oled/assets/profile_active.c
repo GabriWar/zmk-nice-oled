@@ -22,10 +22,8 @@ const LV_ATTRIBUTE_MEM_ALIGN LV_ATTRIBUTE_LARGE_CONST LV_ATTRIBUTE_IMG_PROFILE_A
         0xff, 0xf0, 0xff, 0xf0, 0xff, 0xf0, 0xff, 0xf0, 0x7f, 0xe0, 0x3f, 0xc0,
 };
 
-const lv_img_dsc_t profile_active = {
-    .header.cf = LV_IMG_CF_INDEXED_1BIT,
-    .header.always_zero = 0,
-    .header.reserved = 0,
+const lv_image_dsc_t profile_active = {
+    .header.cf = LV_COLOR_FORMAT_I1,
     .header.w = 12,
     .header.h = 12,
     .data_size = 32,

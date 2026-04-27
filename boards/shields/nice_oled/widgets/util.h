@@ -69,3 +69,12 @@ void init_rect_dsc(lv_draw_rect_dsc_t *rect_dsc, lv_color_t bg_color);
 void init_line_dsc(lv_draw_line_dsc_t *line_dsc, lv_color_t color, uint8_t width);
 void init_label_dsc(lv_draw_label_dsc_t *label_dsc, lv_color_t color, const lv_font_t *font,
                     lv_text_align_t align);
+
+void canvas_draw_text(lv_obj_t *canvas, int32_t x, int32_t y, int32_t max_w,
+                      lv_draw_label_dsc_t *dsc, const char *text);
+void canvas_draw_img(lv_obj_t *canvas, int32_t x, int32_t y,
+                     const lv_image_dsc_t *src, lv_draw_image_dsc_t *dsc);
+void canvas_draw_rect(lv_obj_t *canvas, int32_t x, int32_t y, int32_t w, int32_t h,
+                      lv_draw_rect_dsc_t *dsc);
+void canvas_draw_line(lv_obj_t *canvas, lv_point_t *points, uint32_t n,
+                      lv_draw_line_dsc_t *dsc);

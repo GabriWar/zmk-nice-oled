@@ -17,9 +17,9 @@ LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 
 static sys_slist_t widgets = SYS_SLIST_STATIC_INIT(&widgets);
 
-LV_IMG_DECLARE(vim_32x128);
-LV_IMG_DECLARE(vim_68x160);
-LV_IMG_DECLARE(sleep_oled);
+LV_IMAGE_DECLARE(vim_32x128);
+LV_IMAGE_DECLARE(vim_68x160);
+LV_IMAGE_DECLARE(sleep_oled);
 
 static void set_sleep_img(struct zmk_widget_sleep_status *widget,
                           struct zmk_activity_state_changed ev) {
@@ -68,12 +68,12 @@ int zmk_widget_sleep_status_init(struct zmk_widget_sleep_status *widget, lv_obj_
     sys_slist_append(&widgets, &widget->node);
     widget->obj = lv_obj_create(parent);
     lv_obj_set_size(widget->obj, 160, 68);
-    widget->art = lv_img_create(widget->obj);
+    widget->art = lv_image_create(widget->obj);
 #if IS_ENABLED(CONFIG_NICE_EPAPER_ON)
-    lv_img_set_src(widget->art, &vim_68x160);
+    lv_image_set_src(widget->art, &vim_68x160);
 #else
-    // lv_img_set_src(widget->art, &sleep_oled);
-    lv_img_set_src(widget->art, &vim_32x128);
+    // lv_image_set_src(widget->art, &sleep_oled);
+    lv_image_set_src(widget->art, &vim_32x128);
 #endif
     lv_obj_align(widget->art, LV_ALIGN_TOP_LEFT, 0, 0);
 
