@@ -10,13 +10,33 @@ void to_uppercase(char *str) {
 }
 
 void rotate_canvas(lv_obj_t *canvas, lv_color_t cbuf[]) {
-  static lv_color_t cbuf_tmp[CANVAS_HEIGHT * CANVAS_HEIGHT];
-  memcpy(cbuf_tmp, cbuf, sizeof(cbuf_tmp));
+  /* For an I1 canvas, the buffer holds a packed 1bpp bitmap (no palette).
+   * lv_image_dsc_t with cf=I1 expects palette bytes (2 colors x 4 BGRA = 8 bytes)
+   * prepended to the bitmap data. Build a temp image with that layout so
+   * lv_draw_image can render it back rotated.
+   */
+  enum {
+    BITMAP_BYTES  = (CANVAS_HEIGHT * CANVAS_HEIGHT) / 8,
+    PALETTE_BYTES = 8,
+  };
+  static uint8_t cbuf_tmp[PALETTE_BYTES + BITMAP_BYTES];
+
+  /* Palette must match the canvas's palette setup in screen*.c:
+   *   idx 0 = white (BGRA 0xFF 0xFF 0xFF 0xFF)
+   *   idx 1 = black (BGRA 0x00 0x00 0x00 0xFF)
+   * Inversion is handled at color-write time via LVGL_BACKGROUND/FOREGROUND;
+   * the bitmap bits already encode which palette index each pixel uses.
+   */
+  cbuf_tmp[0] = 0xff; cbuf_tmp[1] = 0xff; cbuf_tmp[2] = 0xff; cbuf_tmp[3] = 0xff;
+  cbuf_tmp[4] = 0x00; cbuf_tmp[5] = 0x00; cbuf_tmp[6] = 0x00; cbuf_tmp[7] = 0xff;
+
+  memcpy(&cbuf_tmp[PALETTE_BYTES], cbuf, BITMAP_BYTES);
 
   lv_image_dsc_t img;
   memset(&img, 0, sizeof(img));
-  img.data = (void *)cbuf_tmp;
-  img.header.cf = LV_COLOR_FORMAT_NATIVE;
+  img.data = cbuf_tmp;
+  img.data_size = sizeof(cbuf_tmp);
+  img.header.cf = LV_COLOR_FORMAT_I1;
   img.header.w = CANVAS_HEIGHT;
   img.header.h = CANVAS_HEIGHT;
 
